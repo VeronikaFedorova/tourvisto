@@ -52,7 +52,6 @@ const getGooglePicture = async (accessToken: string) => {
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
     if (!response.ok) throw new Error('Failed to fetch Google profile picture');
-
     const { photos } = await response.json();
     return photos?.[0]?.url || null;
   } catch (error) {
@@ -97,7 +96,7 @@ export const getUser = async () => {
 
     return documents.length > 0 ? documents[0] : redirect('/sign-in');
   } catch (error) {
-    console.error('Error fetching user:', error);
+    console.error('Error getting user:', error);
     return null;
   }
 };
@@ -114,7 +113,7 @@ export const getAllUsers = async (limit: number, offset: number) => {
 
     return { users, total };
   } catch (e) {
-    console.log('Error fetching users');
+    console.log('Error getting all users');
     return { users: [], total: 0 };
   }
 };
